@@ -42,7 +42,20 @@ class TodoList:
         else:
             del self.tasks[index]
             print("Se elimino la tarea correctamente.")
+            
+    def update_task(self):
+        print("Elige la tarea que deseas modificar:")
+        self.view_tasks()
 
+        place = input("Ingresa el número de tarea: ")
+
+        if int(place) -1 > len(self.tasks):
+            print("La tarea elegida no existe.")
+            return
+
+        task = input("Ingresa el nuevo contenido de la tarea: ")
+
+        self.tasks[int(place) - 1] = task
 
 def main():
     todo_list = TodoList()
@@ -52,7 +65,9 @@ def main():
         print("3. Insertar tarea")
         print("4. Duplicar tarea")
         print("5. Eliminar tarea")
-        print("6. Salir")
+        print("6. Actualizar una tarea")
+        print("7. Salir")
+
         option = input("Seleccione una opción: ")
         if option == "1":
             task = input("Ingrese la tarea: ")
@@ -70,12 +85,13 @@ def main():
                 index = int(toDelete)
                 todo_list.delete_task(index)
             except ValueError:
-                print("La opcion no es valida.")
+                print("La opcion ingresada tiene que ser un numero.")
         elif option == "6":
+            todo_list.update_task()
+        elif option == "7":
             break
         else:
             print("Opción no válida. Inténtalo de nuevo.")
 
 if __name__ == "__main__":
     main()
-
