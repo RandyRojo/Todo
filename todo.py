@@ -21,10 +21,9 @@ class TodoList:
 
     def view_tasks(self):
         for index, task in enumerate(self.tasks):
-            print('#', index, task)
+            print(f'{index} - {task}')
 
     def duplicate_task(self):
-
         if self.tasks is None or len(self.tasks) == 0:
             print("No existen tareas para duplicar.")
             return
@@ -36,6 +35,15 @@ class TodoList:
         task = self.tasks[int(place)]
         self.add_task(task)
 
+    def delete_task(self, index):
+        size = len(self.tasks) - 1
+        if index > size:
+            print("El valor ingresado no es valido.")
+        else:
+            del self.tasks[index]
+            print("Se elimino la tarea correctamente.")
+
+
 def main():
     todo_list = TodoList()
     while True:
@@ -43,7 +51,8 @@ def main():
         print("2. Ver tareas")
         print("3. Insertar tarea")
         print("4. Duplicar tarea")
-        print("5. Salir")
+        print("5. Eliminar tarea")
+        print("6. Salir")
         option = input("Seleccione una opción: ")
         if option == "1":
             task = input("Ingrese la tarea: ")
@@ -55,10 +64,18 @@ def main():
         elif option == "4":
             todo_list.duplicate_task()
         elif option == "5":
+            todo_list.view_tasks()
+            toDelete = input("Ingrese el numero de tarea a eliminar.")
+            try:
+                index = int(toDelete)
+                todo_list.delete_task(index)
+            except ValueError:
+                print("La opcion no es valida.")
+        elif option == "6":
             break
         else:
             print("Opción no válida. Inténtalo de nuevo.")
 
-
 if __name__ == "__main__":
     main()
+
