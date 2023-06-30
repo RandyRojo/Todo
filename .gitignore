@@ -1,2 +1,5 @@
 .vscode/settings.json
 __pycache__/
+__pycache__/Menu.cpython-311.pyc
+__pycache__/Options.cpython-311.pyc
+__pycache__/TaskRepository.cpython-311.pyc
