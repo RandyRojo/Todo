@@ -49,13 +49,13 @@ class TodoList:
 
         place = input("Ingresa el número de tarea: ")
 
-        if int(place) -1 > len(self.tasks):
+        if int(place) > len(self.tasks):
             print("La tarea elegida no existe.")
             return
 
         task = input("Ingresa el nuevo contenido de la tarea: ")
 
-        self.tasks[int(place) - 1] = task
+        self.tasks[int(place)] = task
 
 def main():
     todo_list = TodoList()
