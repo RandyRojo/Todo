@@ -1,6 +1,6 @@
 import TaskRepository
-import Menu
-import Options
+import mappings.Menu as Menu
+import enumerators.Options as Options
 
 def main():
     todo_list = TaskRepository.TodoList()
