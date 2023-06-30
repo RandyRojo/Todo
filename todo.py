@@ -1,31 +1,40 @@
-class TodoList:
-    def __init__(self):
-        self.tasks = []
-
-    def add_task(self, task):
-        self.tasks.append(task)
-
-    def view_tasks(self):
-        for task in self.tasks:
-            print(task)
+import TaskRepository
+import Menu
+import Options
 
 def main():
-    todo_list = TodoList()
+    todo_list = TaskRepository.TodoList()
     while True:
-        print("1. Añadir tarea")
-        print("2. Ver tareas")
-        print("3. Salir")
-        option = input("Seleccione una opción: ")
-        if option == "1":
-            task = input("Ingrese la tarea: ")
-            todo_list.add_task(task)
-        elif option == "2":
-            todo_list.view_tasks()
-        elif option == "3":
-            break
-        else:
-            print("Opción no válida. Inténtalo de nuevo.")
 
+        print("\n")
+
+        for option, data in Menu.menu_mapping.items():
+            print(f"{option.value}. {data['Name']}")
+
+        print("\n")
+
+        try:
+            user_choice = int(input("Seleccione una opción: "))
+            print("\n")
+            selected_option = Options.MenuOptions(user_choice)
+        except ValueError:
+            print("Opción inválida. Por favor, seleccione una opción válida.")
+            continue
+        except KeyError:
+            print("Opción inválida. Por favor, seleccione una opción válida.")
+            continue
+
+        if selected_option == Options.MenuOptions.EXIT:
+            print("Saliendo del programa...")
+            break
+
+        selected_task = Menu.menu_mapping[selected_option]["Task"]
+
+        if selected_task:
+            task_method = getattr(todo_list, selected_task)
+            task_method()
+        else:
+            print("Opción inválida. Por favor, seleccione una opción válida.")
 
 if __name__ == "__main__":
-main()
+    main()
