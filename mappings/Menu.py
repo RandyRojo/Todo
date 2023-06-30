@@ -1,4 +1,4 @@
-import Options
+import enumerators.Options as Options
 import TaskRepository
 
 todo_class = TaskRepository.TodoList()
@@ -14,7 +14,7 @@ menu_mapping = {
     },
     Options.MenuOptions.INSERT_TASK: {
         "Name": "Insertar Tarea",
-        "Task": todo_class.add_task.__name__
+        "Task": todo_class.insert_task.__name__
     },
     Options.MenuOptions.COPY_TASK: {
         "Name": "Duplicar Tarea",
